@@ -1,4 +1,4 @@
-import { Check, X, Zap, Palette, DollarSign, Award, FileText, Users } from 'lucide-react';
+import { Check, X, Zap, Palette, DollarSign, Award, FileText, Users, Gift, MessageCircle } from 'lucide-react';
 
 export const COMPARISON_DATA = {
   oldWay: [
@@ -41,25 +41,25 @@ export const BONUSES = [
     title: 'Pack de Prompts "Mestre da I.A."',
     description: "Meus melhores comandos prontos. É só copiar e colar para gerar sites de Dentistas, Advogados, Delivery e mais.",
     oldPrice: "R$ 97,00",
-    icon: Award
+    icon: Gift
   },
   {
     title: "Contrato de Prestação de Serviços",
     description: "Um modelo de contrato simples e seguro para você usar com seus clientes e parecer ultra profissional.",
     oldPrice: "R$ 150,00",
-    icon: FileText
+    icon: Gift
   },
   {
     title: "Aulas de Identidade Visual com I.A.",
     description: "Aprenda a criar logotipos, paletas de cores e identidade visual completa para empresas que não têm.",
     oldPrice: "R$ 197,00",
-    icon: Palette
+    icon: Gift
   },
   {
     title: "Comunidade WhatsApp Exclusiva",
-    description: "Acesso vitalício à nossa comunidade de alunos. Networking, troca de experiências e suporte.",
+    description: "Acesso vitalício à nossa comunidade de alunos. Networking, troca de experiências, suporte da comunidade e oportunidades de parceria.",
     oldPrice: "Inestimável",
-    icon: Users
+    icon: MessageCircle
   }
 ];
 

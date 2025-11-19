@@ -405,26 +405,47 @@ const App: React.FC = () => {
       </Section>
 
       {/* BONUSES SECTION */}
-      <div className="bg-cardBg/50 border-y border-gray-900">
-        <Section>
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-neonGreen">
-            BÔNUS EXCLUSIVOS DO PLANO PREMIUM
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="bg-black border-y border-gray-900 py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              BÔNUS EXCLUSIVOS DO <span className="text-neonGreen">PLANO PREMIUM</span>
+            </h2>
+            <p className="text-gray-400 text-sm uppercase tracking-widest">
+              Valor total dos bônus: <span className="text-neonGreen font-bold">R$ 444+</span>
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
             {BONUSES.map((bonus, idx) => (
-              <div key={idx} className="bg-darkBg border border-gray-800 p-6 rounded-xl hover:border-neonGreen/30 transition-colors">
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center mb-4 text-neonGreen">
-                  <bonus.icon size={20} />
+              <div key={idx} className="bg-cardBg border border-gray-800 p-8 rounded-2xl hover:border-gray-700 transition-all group relative overflow-hidden">
+                <div className="flex justify-between items-start mb-6 relative z-10">
+                  {/* Icon */}
+                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center`}> 
+                     <bonus.icon 
+                        size={40} 
+                        strokeWidth={1.5}
+                        className={`${idx === 3 ? "text-white fill-white/20" : "text-orange-500 fill-orange-500/20"}`} 
+                     />
+                  </div>
+                  
+                  {/* Price Tag */}
+                  <div className="text-right">
+                    <div className="text-xs text-gray-500 line-through font-medium">{bonus.oldPrice}</div>
+                    <div className="text-neonGreen font-bold text-sm uppercase">Grátis</div>
+                  </div>
                 </div>
-                <h4 className="font-bold text-white mb-2">{bonus.title}</h4>
-                <p className="text-xs text-gray-400 mb-4 min-h-[60px]">{bonus.description}</p>
-                <div className="text-xs font-medium text-gray-500 uppercase">
-                  Valor: <span className="line-through">{bonus.oldPrice}</span> <span className="text-neonGreen ml-1">GRÁTIS</span>
-                </div>
+                
+                <h4 className="font-bold text-neonGreen text-lg mb-3 relative z-10">
+                  BÔNUS {idx + 1}: {bonus.title}
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed relative z-10">
+                  {bonus.description}
+                </p>
               </div>
             ))}
           </div>
-        </Section>
+        </div>
       </div>
 
       {/* FAQ */}

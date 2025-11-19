@@ -166,7 +166,7 @@ const App: React.FC = () => {
         <Section className="text-center relative z-10">
           <FadeInSection>
             <span className="inline-block py-1 px-3 rounded-full bg-gray-800 border border-gray-700 text-xs font-semibold text-neonYellow mb-6 tracking-wide">
-              MÉTODO EXCLUSIVO 2025
+              MÉTODO EXCLUSIVO
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
               NÃO ESTUDE PROGRAMAÇÃO <br />

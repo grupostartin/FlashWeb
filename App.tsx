@@ -255,7 +255,7 @@ const App: React.FC = () => {
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
               SEJA O DONO DA AGÊNCIA. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 line-through decoration-neonYellow decoration-4">NÃO SEJA APENAS UM PROGRAMADOR</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 line-through decoration-neonYellow decoration-4">NÃO SEJA APENAS UM PROGRAMADOR.</span>
             </h1>
             <h2 className="text-lg md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed font-light">
               Descubra Como Criar Sites Profissionais em <strong className="text-neonGreen">15 Minutos</strong> Usando I.A. e Feche Seu Primeiro Contrato de <strong className="text-white">R$ 500 a R$ 1.500</strong> em até 30 Dias.

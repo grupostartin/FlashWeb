@@ -134,6 +134,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, isOpen,
 const App: React.FC = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -143,8 +144,23 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Hacker Glitch Logic
+  useEffect(() => {
+    const glitchInterval = setInterval(() => {
+      setIsGlitching(true);
+      
+      // Duration of the glitch effect (longer burst)
+      setTimeout(() => {
+        setIsGlitching(false);
+      }, 1200); 
+
+    }, 8000); // Runs every 8 seconds
+
+    return () => clearInterval(glitchInterval);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-darkBg font-sans text-gray-100 selection:bg-neonYellow selection:text-black overflow-x-hidden">
+    <div className={`min-h-screen bg-darkBg font-sans text-gray-100 selection:bg-neonYellow selection:text-black overflow-x-hidden transition-colors duration-100 ${isGlitching ? 'hacker-glitch-active' : ''}`}>
       
       {/* Sticky Header CTA (Mobile/Desktop) */}
       <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-3 border-b border-gray-800' : 'bg-transparent py-4 border-b border-transparent'}`}>

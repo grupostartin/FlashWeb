@@ -10,11 +10,64 @@ import {
   Menu,
   X,
   Check,
-  Users
+  Users,
+  Zap
 } from 'lucide-react';
 import { COMPARISON_DATA, MODULES, BONUSES, FAQS } from './constants';
 
 // --- Components ---
+
+interface LoadingScreenProps {
+  onComplete?: () => void;
+}
+
+const LoadingScreen: React.FC<LoadingScreenProps> = () => {
+  return (
+    <div className="fixed inset-0 z-[100] bg-darkBg flex flex-col items-center justify-center overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neonYellow/10 rounded-full blur-[100px] animate-pulse"></div>
+      
+      {/* 3D Lightning Bolt Vector Construction */}
+      <div className="relative w-32 h-32 mb-12 animate-bounce" style={{ animationDuration: '2s' }}>
+        {/* Shadow Layer for 3D depth */}
+        <Zap 
+          size={128} 
+          className="absolute top-2 left-2 text-orange-600/50 blur-sm transform skew-x-12" 
+          fill="currentColor" 
+        />
+        {/* Darker Edge Layer */}
+        <Zap 
+          size={128} 
+          className="absolute top-1 left-1 text-yellow-600" 
+          fill="currentColor" 
+        />
+        {/* Main Face Layer */}
+        <Zap 
+          size={128} 
+          className="relative text-neonYellow drop-shadow-[0_0_15px_rgba(255,215,0,0.8)]" 
+          fill="currentColor" 
+        />
+        {/* Shine/Highlight Layer */}
+        <div className="absolute top-4 left-8 w-4 h-12 bg-white/40 skew-x-12 blur-[2px] rounded-full"></div>
+      </div>
+
+      {/* Text */}
+      <div className="relative z-10 flex flex-col items-center">
+        <h2 className="text-2xl font-black text-white mb-6 tracking-[0.2em] uppercase animate-pulse">
+          Entrando no site
+        </h2>
+        
+        {/* Loading Bar Container */}
+        <div className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden border border-gray-700 shadow-inner">
+          {/* Animated Bar */}
+          <div className="h-full bg-neonYellow shadow-[0_0_10px_#FFD700] animate-loading-bar"></div>
+        </div>
+        
+        <p className="mt-2 text-xs text-gray-500 font-mono">carregando assets...</p>
+      </div>
+    </div>
+  );
+};
 
 interface FadeInSectionProps {
   children?: React.ReactNode;
@@ -132,10 +185,20 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, isOpen,
 // --- Main App ---
 
 const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isGlitching, setIsGlitching] = useState(false);
 
+  // Handle Loading Timer
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 seconds loading time
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle Scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
@@ -144,8 +207,10 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Hacker Glitch Logic
+  // Hacker Glitch Logic (Only active after loading)
   useEffect(() => {
+    if (isLoading) return;
+
     const glitchInterval = setInterval(() => {
       setIsGlitching(true);
       
@@ -157,10 +222,14 @@ const App: React.FC = () => {
     }, 8000); // Runs every 8 seconds
 
     return () => clearInterval(glitchInterval);
-  }, []);
+  }, [isLoading]);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
-    <div className={`min-h-screen bg-darkBg font-sans text-gray-100 selection:bg-neonYellow selection:text-black overflow-x-hidden transition-colors duration-100 ${isGlitching ? 'hacker-glitch-active' : ''}`}>
+    <div className={`min-h-screen bg-darkBg font-sans text-gray-100 selection:bg-neonYellow selection:text-black overflow-x-hidden transition-colors duration-100 animate-fade-in-up ${isGlitching ? 'hacker-glitch-active' : ''}`}>
       
       {/* Sticky Header CTA (Mobile/Desktop) */}
       <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-3 border-b border-gray-800' : 'bg-transparent py-4 border-b border-transparent'}`}>

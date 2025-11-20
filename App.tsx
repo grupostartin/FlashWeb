@@ -253,7 +253,7 @@ const App: React.FC = () => {
             <span className="inline-block py-1 px-3 rounded-full bg-gray-800 border border-gray-700 text-xs font-semibold text-neonYellow mb-6 tracking-wide">
               MÉTODO EXCLUSIVO
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-neonYellow leading-tight mb-6">
               SEJA O DONO DA AGÊNCIA. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 line-through decoration-neonYellow decoration-4">NÃO SEJA APENAS UM PROGRAMADOR.</span>
             </h1>
